@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <component v-bind:is="Cmp"></component>
+    <button v-on:click="updateCmp('signin')">Load SignIn</button>
+    <button v-on:click="updateCmp('signup')">Load SignUp</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import SignIn from './components/SignIn.vue'
+import SignUp from './components/SignUp.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    'signin':SignIn,
+    'signup':SignUp
+  },
+  data(){ 
+    return{
+      Cmp:'signin',
+    }
+  },
+  methods:{
+    updateCmp(item){
+      this.Cmp=item
+    }
   }
 }
 </script>
